@@ -4,6 +4,7 @@ import pyyaml
 """
 Requirement tracking
 - pyyaml
-- cryptography
+- python-gnupg
 """
+
 
