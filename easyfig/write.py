@@ -1,4 +1,3 @@
-import re
 import yaml
 
 
@@ -8,7 +7,6 @@ class Write():
         self.file_class=file
 
     def set_value(self, obj, key, value, encrypt):
-        self.file_class.check_for_file()
         yaml_dict=self.file_class.file_to_dict() or {}
 
         if encrypt:

@@ -1,4 +1,4 @@
-from .config import Config
+from .main import Config
 
 def set_value(obj, key, value, **args):
     Config(obj, key, value, **args).set_value()

@@ -1,5 +1,3 @@
-import re
-
 class Read():
     def __init__(self, encryption_class, file_class):
         self.encryption_class=encryption_class

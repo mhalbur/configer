@@ -3,18 +3,13 @@ from .file import File
 from .read import Read
 from .write import Write
 
+"""
+To Do:
+
+Now that configuration is set up - need to update below code to get key paths and config file paths from easyfig's
+config file
 
 """
-Requirement tracking
-- pyyaml
-- python-gnupg
-- cryptography
-
-1. Create the key on the server where code lies for production
-2. Copy key from server to local machine for development. Allows for encrypted values to be the same 
-   from your development to server when pushed to prod
-"""
-
 class Config():
     def __init__(self, 
                  obj=None,
@@ -40,5 +35,3 @@ class Config():
 
     def get_value(self):
         Read(encryption_class=self.encryption, file_class=self.file).get_value(obj=self.obj, key=self.key, decrypt=self.decrypt)
-
-
