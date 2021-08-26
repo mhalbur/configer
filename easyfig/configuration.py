@@ -1,4 +1,5 @@
 import os
+import sys
 import yaml
 from cryptography.fernet import Fernet
 from pathlib import Path
@@ -9,6 +10,8 @@ class EasyConfig_Config():
     def __init__(self):
         self.user_home_directory=str(Path.home())
         self.easyfig_config=f'{self.user_home_directory}/.easyfig_config'  
+        self.current_directory = os.getcwd()
+        self.project = os.getcwd().split('/')[-1]
 
 
     def create_easyfig_config(self):
@@ -35,16 +38,17 @@ class EasyConfig_Config():
         self.easyfig_config_write(key='easyfig_key', filepath=keypath)
 
 
-    def name_repo_config(self):
-        current_directory=os.getcwd().split('/')[-1]
-        return f'{self.user_home_directory}/configuration/{current_directory}_config.yaml'
+    def name_project_config(self):
+        current_directory=self.project
+
+        return f'{self.current_directory}/configuration/{current_directory}_config.yaml'
 
 
-    def create_repo_config(self, filepath=None):
+    def create_project_config(self, filepath=None):
         if filepath is None:
-            filepath=self.name_repo_config()
+            filepath=self.name_project_config()
         File().create_file(filepath=filepath)
-        self.easyfig_config_write(key=os.getcwd().split('/')[-1], filepath=filepath)
+        self.easyfig_config_write(key=self.project, filepath=filepath)
         return filepath
 
 
@@ -54,3 +58,23 @@ class EasyConfig_Config():
 
         with open(self.easyfig_config, 'w') as c_file:
             yaml.dump(yaml_dict, c_file)
+
+
+    def get_project_path(self):
+        yaml_dict=File().file_to_dict(filepath=self.easyfig_config)
+
+        try:
+            return yaml_dict[f'{self.project}']
+        except KeyError as ex:
+            print("Unable to locate project configuration. Please run 'easyfig projectconfiger' to create it.")
+            return 'exit'
+
+
+    def get_key_path(self):
+        yaml_dict=File().file_to_dict(filepath=self.easyfig_config)
+
+        try:
+            return yaml_dict['easyfig_key']
+        except KeyError as ex:
+            print("Unable to locate project configuration. Please run 'easyfig setup' to create it.")
+            return 'exit'

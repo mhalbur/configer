@@ -11,23 +11,23 @@ def main():
 @click.command()
 @click.argument('setvalue')
 def setvalue(setvalue):
-    split_variable=setvalue.split(":")
-    Config(obj=split_variable[0], key=split_variable[1], value=split_variable[2]).set_value()
+    split_variable=setvalue.split(".")
+    Config().set_value(obj=split_variable[0], key=split_variable[1], value=split_variable[2])
 
 
 @click.command()
 @click.argument('getvalue')
 def getvalue(getvalue):
-    split_variable=getvalue.split(":")
-    value = Config(obj=split_variable[0], key=split_variable[1]).get_value()
+    split_variable=getvalue.split(".")
+    value = Config().get_value(obj=split_variable[0], key=split_variable[1])
     click.echo(value)
 
 
 @click.command()
 @click.option('--filepath', default=None)
-def configer(filepath):
-    config_path = EasyConfig_Config().create_repo_config(filepath=filepath)
-    click.echo(f"Created repo configuration file at {config_path}.")
+def projectconfiger(filepath):
+    config_path = EasyConfig_Config().create_project_config(filepath=filepath)
+    click.echo(f"Created project configuration file at {config_path}.")
 
 
 @click.command()
@@ -36,8 +36,10 @@ def setup(keypath):
     EasyConfig_Config().setup(keypath=keypath)
 
 
+# make command for show file for project - is this actually needed though...?
+
 
 main.add_command(setvalue)
 main.add_command(getvalue)
-main.add_command(configer)
+main.add_command(projectconfiger)
 main.add_command(setup)

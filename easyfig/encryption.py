@@ -3,9 +3,8 @@ from cryptography.fernet import Fernet
 
 
 class Encryption():
-    def __init__(self, key_directory, key_file):
-        self.key_directory=key_directory
-        self.key_path=f"{key_directory}/{key_file}"
+    def __init__(self, encryption_config=None):
+        self.key_path=encryption_config
 
 
     def load_key(self):
@@ -21,7 +20,6 @@ class Encryption():
 
 
     def encrypt_value(self, value):
-        self.check_for_file()
         encrypted_value=self.encrypt(value=value).decode()
         return encrypted_value
 
