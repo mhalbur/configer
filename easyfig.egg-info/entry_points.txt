@@ -1,0 +1,3 @@
+[console_scripts]
+easyfig = easyfig.command_line:main
+

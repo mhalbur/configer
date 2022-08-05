@@ -11,6 +11,7 @@ class Read():
             value=self.encryption_class.decrypt_value(value=value)
         return value
 
+    
     def view_file(self):
         with open(self.file_class.project_config, 'r') as c_file:
             for line in c_file:
