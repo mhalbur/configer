@@ -13,7 +13,6 @@ class File():
             pass
 
     def file_to_dict(self, filepath=None):
-        print(filepath)
         if filepath is None:
             filepath = self.project_config
         with open(filepath, 'r') as c_file:

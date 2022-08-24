@@ -5,4 +5,5 @@ def set_value(obj, key, value, **args):
 
 
 def get_value(obj, key, decrypt=False, **args):
-    Config().get_value(obj, key, decrypt, **args)
+    value = Config().get_value(obj, key, decrypt, **args)
+    return value

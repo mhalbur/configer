@@ -14,7 +14,6 @@ class EasyConfig_Config():
         self.project = os.getcwd().split('/')[-1]
         self.easyfig_config=f'configuration/{self.project}_config.yaml'  
         self.easyfig_keypath=f"{self.user_home_directory}/.easyfig_secret"
-        print(self.easyfig_keypath)
 
     def create_easyfig_config(self):
         os.mknod(self.easyfig_config)
