@@ -1,4 +1,5 @@
 import click
+import re
 from easyfig.main import Config
 from easyfig.configuration import EasyConfig_Config
 
@@ -12,7 +13,8 @@ def main():
 @click.argument('setvalue')
 @click.option('--encrypt', default=False)
 def setvalue(setvalue, encrypt):
-    split_variable=setvalue.split(".")
+    r = r'(?<!\\)(?:\\\\)*\.'
+    split_variable = [i.replace("\\", "") for i in re.split(r, setvalue)]
     Config().set_value(obj=split_variable[0], key=split_variable[1], value=split_variable[2], encrypt=encrypt)
 
 
