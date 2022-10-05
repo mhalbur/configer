@@ -1,4 +1,5 @@
 import click
+import re
 from easyfig.main import Config
 from easyfig.configuration import EasyConfig_Config
 
@@ -10,9 +11,11 @@ def main():
 
 @click.command()
 @click.argument('setvalue')
-def setvalue(setvalue):
-    split_variable=setvalue.split(".")
-    Config().set_value(obj=split_variable[0], key=split_variable[1], value=split_variable[2])
+@click.option('--encrypt', default=False)
+def setvalue(setvalue, encrypt):
+    r = r'(?<!\\)(?:\\\\)*\.'
+    split_variable = [i.replace("\\", "") for i in re.split(r, setvalue)]
+    Config().set_value(obj=split_variable[0], key=split_variable[1], value=split_variable[2], encrypt=encrypt)
 
 
 @click.command()
@@ -31,9 +34,8 @@ def projectconfiger(filepath):
 
 
 @click.command()
-@click.option('--keypath', default=None)
-def setup(keypath):
-    EasyConfig_Config().setup(keypath=keypath)
+def setup():
+    EasyConfig_Config().setup()
 
 
 # make command for show file for project - is this actually needed though...?
