@@ -27,7 +27,6 @@ def setvalue(name, key, value, encrypt, config_file):
 @click.option('--config_file', default=None)
 @click.option('--decrypt', default=False)
 def getvalue(name, key, decrypt, config_file):
-    print("1: ", config_file)
     value = Config(config_file=config_file).get_value(obj=name, key=key, decrypt=decrypt)
     click.echo(value)
 
