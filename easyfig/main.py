@@ -16,7 +16,6 @@ class Config():
         self.config_filepath = self.file.config_filepath
 
     def checker(self):
-        print("2: ", self.config_file)
         if self.config_file == 'exit' or self.encryption_path=='exit':
             sys.exit()
 
