@@ -11,10 +11,10 @@ class EasyConfig_Config():
     def __init__(self, config_file=None):
         self.user_home_directory=str(Path.home())
         self.current_directory = os.getcwd()
-        self.project = f"{os.getcwd().split('/')[-1]}"
+        self.project = f"{os.getcwd().split('\\')[-1]}"
         self.config_file=f'{self.project}_Config.yaml' if config_file is None else config_file  
-        self.config_filepath=self.config_filepath=f'configuration/{self.config_file}'
-        self.easyfig_keypath=f"{self.user_home_directory}/.easyfig_secret"
+        self.config_filepath=self.config_filepath=f'configuration\\{self.config_file}'
+        self.easyfig_keypath=f"{self.user_home_directory}\\.easyfig_secret"
         
 
     def create_easyfig_config(self):

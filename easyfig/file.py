@@ -3,9 +3,9 @@ import yaml
 
 class File():
     def __init__(self, config_file=None):
-        self.project = f"{os.getcwd().split('/')[-1]}"
+        self.project = f"{os.getcwd().split('\\')[-1]}"
         self.config_file=f'{self.project}_Config.yaml' if config_file is None else config_file 
-        self.config_filepath=f'configuration/{self.config_file}'
+        self.config_filepath=f'configuration\\{self.config_file}'
         print("4: ", self.config_file)
 
     def create_file(self):
